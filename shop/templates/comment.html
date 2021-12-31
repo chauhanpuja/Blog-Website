@@ -1,0 +1,50 @@
+{%extends 'base.html' %}
+{% block body%}
+{% load static %}
+
+
+{%if user.is_authenticated %}
+<div class="container my-3">
+   
+    <form action="/shop/comment" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="comment" class="form-label">Post Comment</label>
+            <input type="text" class="form-control" id="comment" name="comment" placeholder="Enter comment here">
+        </div>
+        
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+       </form>
+        </div>
+
+{%else%}
+
+    
+    <div class="container my-3">
+        <P><b>PLEASE LOGIN TO POST THE COMMENT</b></P>
+    </div>
+{%endif%}
+<div class="container">
+    
+    <h2>Comments ({{comments.count}})</h2>
+    {% for comment in comments%}
+    <div class="row my-3">
+        <div class="col-md-1">
+            <img class="rounded mx-auto d-block w-100 p-2" src="{%static '/img/user1.png' %}" alt="user">
+        </div>
+        
+        <div class="col-md-11">
+        <div><b>{{comment.user}} </b> </div>
+
+        <div ><b>{{comment.timestamp}}</b></div>  
+        <div>
+            {{comment.comments}} 
+        </div> 
+        
+        </div>
+{%endfor%}
+    </div>
+
+{%endblock%}

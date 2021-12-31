@@ -1,0 +1,29 @@
+{%extends 'base.html' %}
+
+{%block body%}
+<style>
+    h4{
+        color: indianred;
+    }
+    p{
+        color: indigo;
+    }
+</style>
+<div class="container my-5">
+    {%for i in product %}
+    <div class="row">
+        <div class="col md-4">
+            <img src="/media/{{i.image}}" width="230px" height="385px" class="card-img-top" alt="...">
+        </div>
+        <div class="col md-8 my-4">
+
+            <h2>{{i.pro_name}}</h2>
+            <h4>Mrp {{i.price}}</h4>
+            <p>{{i.desc}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{%endblock%}
